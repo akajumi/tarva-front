@@ -20,13 +20,21 @@ class Project extends Component {
   render() {
     return (
       <div>
-        <header>
-          <h1>Project parameters:</h1>
-        </header>
-        <form>
-          <label htmlFor="lorem">Lorem</label>
-          <input type="text" id="lorem" name="lorem" value="" />
-        </form>
+        <div className="row">
+          <div className="sm-8 col">
+            <h2>Project parameters:</h2>
+          </div>
+          <div className="sm-4 col" style={{ textAlign: 'right' }}>
+            <button className="btn-small">Reference</button>
+            &nbsp;
+            <button className="btn-small">Test</button>
+            &nbsp;
+            <button className="btn-small">Approve</button>
+            &nbsp;
+            <button className="btn-small">Report</button>
+          </div>
+        </div>
+        <div className="row flex-left">sdfsdf</div>
       </div>
     )
   }

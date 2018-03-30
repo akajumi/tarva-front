@@ -44,7 +44,6 @@ class Tarva extends Component {
               <NavLink className="paper-btn btn-small" exact={true} to={'/new'}>
                 New project
               </NavLink>
-              <div className="float-right" />
             </div>
           </div>
         </div>
