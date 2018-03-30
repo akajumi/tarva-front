@@ -55,7 +55,7 @@ class Projects extends Component {
           <div className="row flex-left">
             {this.state.projects.map(project => {
               return (
-                <div className="sm-3" key={'project-' + project}>
+                <div className="col-12 sm-6 md-3" key={'project-' + project}>
                   <div className="card">
                     <div className="card-body">
                       <h4 className="card-title">{project}</h4>

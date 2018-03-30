@@ -42,12 +42,6 @@
 }
 .vrt-content a {
   background: none;
-  text-decoration: underline;
-}
-.vrt-content a:hover {
-  background: none;
-  color: #666;
-  text-decoration: none;
 }
 
 .vrt-content.paper .card {
