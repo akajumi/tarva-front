@@ -11,25 +11,13 @@ const client = {
 
   create: project => instance.get(ApiUrl.create(project)),
 
-  reference: (project, config) =>
-    instance.post(ApiUrl.reference(project), {
-      config: config
-    }),
+  reference: project => instance.get(ApiUrl.reference(project)),
 
-  test: (project, config) =>
-    instance.post(ApiUrl.test(project), {
-      config: config
-    }),
+  test: project => instance.get(ApiUrl.test(project)),
 
-  approve: (project, config) =>
-    instance.post(ApiUrl.approve(project), {
-      config: config
-    }),
+  approve: project => instance.get(ApiUrl.approve(project)),
 
-  report: (project, config) =>
-    instance.post(ApiUrl.approve(project), {
-      config: config
-    })
+  report: project => instance.get(ApiUrl.approve(project))
 }
 
 export default client
