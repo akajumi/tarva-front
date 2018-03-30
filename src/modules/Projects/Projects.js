@@ -27,6 +27,7 @@ class Projects extends Component {
     client
       .projects()
       .then(response => {
+        console.log(response)
         this.setState({
           projects: response.data.projects
         })
@@ -45,6 +46,12 @@ class Projects extends Component {
       <div className="row">
         <div className="sm-12 col">
           <h2>Project list:</h2>
+          {this.state.projects.length !== 0 ? null : (
+            <div>
+              <br />
+              <div className="alert alert-primary">No projects available.</div>
+            </div>
+          )}
           <div className="row flex-left">
             {this.state.projects.map(project => {
               return (
