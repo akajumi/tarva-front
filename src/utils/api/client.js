@@ -7,6 +7,8 @@ const instance = axios.create({
 })
 
 const client = {
+  projects: () => instance.get(ApiUrl.projects()),
+
   create: project => instance.get(ApiUrl.create(project)),
 
   reference: (project, config) =>

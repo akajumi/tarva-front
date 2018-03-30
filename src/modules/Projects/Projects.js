@@ -1,17 +1,38 @@
 import React, { Component } from 'react'
 
+import client from 'utils/api/client'
+
 class Projects extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {}
+    this.state = {
+      projects: []
+    }
   }
 
-  // static propTypes = {}
+  static propTypes = {}
 
-  // static defaultProps = {}
+  static defaultProps = {
+    projects: []
+  }
 
-  // componentWillMount() {}
+  componentWillMount() {
+    this.getData()
+  }
+
+  getData = () => {
+    client
+      .projects()
+      .then(response => {
+        this.setState({
+          projects: response.data.projects
+        })
+      })
+      .catch(response => {
+        console.log(response)
+      })
+  }
 
   // componentDidMount() {}
 
@@ -20,13 +41,11 @@ class Projects extends Component {
   render() {
     return (
       <div>
-        <header>
-          <h1>Project list</h1>
-        </header>
+        <h3>Project list</h3>
         <ul>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum</li>
-          <li>Lorem ipsum</li>
+          {this.state.projects.map(project => {
+            return <li>{project}</li>
+          })}
         </ul>
       </div>
     )

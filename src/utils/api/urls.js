@@ -1,4 +1,5 @@
 const ApiUrl = {
+  projects: () => '/projects',
   create: project => '/projects/' + project,
   reference: project => '/projects/' + project + '/reference',
   test: project => '/projects/' + project + '/test',

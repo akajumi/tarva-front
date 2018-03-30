@@ -24,9 +24,23 @@ class Tarva extends Component {
   render() {
     return (
       <div>
-        <header>
-          <h1>Welcome to Tarva front-end</h1>
-        </header>
+        <div class="row flex-center">
+          <div class="sm-4 col">
+            <h2 style={{ margin: 0, padding: 0 }}>
+              VeRTa <small style={{ display: 'block', fontSize: 14 }}>Visual Regresion Test</small>
+            </h2>
+          </div>
+          <div class="sm-8 col">
+            <div class="row flex-center">
+              <div class="sm-2 col">Tarva</div>
+              <div class="sm-2 col">2</div>
+              <div class="sm-2 col">3</div>
+              <div class="sm-2 col">4</div>
+              <div class="sm-2 col">5</div>
+              <div class="sm-2 col">6</div>
+            </div>
+          </div>
+        </div>
         <Switch>
           <Route exact path={'/'} component={Projects} />
           <Route exact path={'/:project'} component={Project} />
