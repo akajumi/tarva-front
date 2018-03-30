@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { NavLink } from 'react-router-dom'
+
 import client from 'utils/api/client'
 
 class Projects extends Component {
@@ -40,13 +42,29 @@ class Projects extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Project list</h3>
-        <ul>
-          {this.state.projects.map(project => {
-            return <li>{project}</li>
-          })}
-        </ul>
+      <div className="row">
+        <div className="sm-12 col">
+          <h2>Project list:</h2>
+          <div className="row flex-left">
+            {this.state.projects.map(project => {
+              return (
+                <div className="sm-3" key={'project-' + project}>
+                  <div className="card">
+                    <div className="card-body">
+                      <h4 className="card-title">{project}</h4>
+                      <p className="card-text">
+                        Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.
+                      </p>
+                      <NavLink exact={true} to={'/' + project}>
+                        <button>Go to project</button>
+                      </NavLink>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     )
   }

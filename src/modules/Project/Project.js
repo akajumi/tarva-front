@@ -24,7 +24,7 @@ class Project extends Component {
           <h1>Project parameters:</h1>
         </header>
         <form>
-          <label for="lorem">Lorem</label>
+          <label htmlFor="lorem">Lorem</label>
           <input type="text" id="lorem" name="lorem" value="" />
         </form>
       </div>

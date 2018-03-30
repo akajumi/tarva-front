@@ -19,6 +19,6 @@ ReactDOM.render(
       <Tarva />
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('tarva')
+  document.getElementById('verta')
 )
 registerServiceWorker()
