@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 import Projects from 'modules/Projects'
+import NewProject from 'modules/NewProject'
 import Project from 'modules/Project'
 
 class Tarva extends Component {
@@ -27,7 +28,7 @@ class Tarva extends Component {
     return (
       <div>
         <div className="vrt-header paper">
-          <div className="row">
+          <div className="row flex-middle">
             <div className="sm-4 col">
               <h1 className="vrt-logo">
                 <NavLink exact={true} to={'/'}>
@@ -36,12 +37,12 @@ class Tarva extends Component {
               </h1>
             </div>
             <div className="sm-8 col" style={{ textAlign: 'right' }}>
-              <NavLink exact={true} to={'/'}>
-                <button className="btn-small">Project list</button>
+              <NavLink className="paper-btn btn-small" exact={true} to={'/'}>
+                Project list
               </NavLink>
               &nbsp;
-              <NavLink exact={true} to={'/new'}>
-                <button className="btn-small">New project</button>
+              <NavLink className="paper-btn btn-small" exact={true} to={'/new'}>
+                New project
               </NavLink>
               <div className="float-right" />
             </div>
@@ -51,7 +52,8 @@ class Tarva extends Component {
         <div className="vrt-content paper">
           <Switch>
             <Route exact path={'/'} component={Projects} />
-            <Route exact path={'/:project'} component={Project} />
+            <Route exact path={'/new'} component={NewProject} />
+            <Route path={'/project/:project'} component={Project} />
           </Switch>
         </div>
       </div>

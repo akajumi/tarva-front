@@ -48,8 +48,44 @@
   margin: 10px 20px 10px 0;
 }
 
-/* COMMON */
+/* FORMS */
+.vrt-error input,
+.vrt-error textarea {
+  border: 2px solid #c00000;
+  color: #c00000;
+}
+.vrt-error label {
+  color: #c00000;
+}
+.vrt-error-description {
+  color: #c00000;
+  display: block;
+  font-size: 16px;
+  padding-top: 8px;
+}
 
+/* COMMON */
+.alert {
+  position: relative;
+}
+.vrt-close-alert {
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  height: 20px;
+  line-height: 9px;
+  padding: 3px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  text-align: center;
+  width: 20px;
+}
+.vtr-no-padding {
+  padding: 5px 0 !important;
+}
 label {
   cursor: pointer;
 }

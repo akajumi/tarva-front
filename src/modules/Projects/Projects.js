@@ -27,7 +27,6 @@ class Projects extends Component {
     client
       .projects()
       .then(response => {
-        console.log(response)
         this.setState({
           projects: response.data.projects
         })
@@ -45,7 +44,9 @@ class Projects extends Component {
     return (
       <div className="row">
         <div className="sm-12 col">
-          <h2>Project list:</h2>
+          <h2>
+            Project list: <span className="badge">{this.state.projects.length}</span>
+          </h2>
           {this.state.projects.length !== 0 ? null : (
             <div>
               <br />
@@ -62,8 +63,12 @@ class Projects extends Component {
                       <p className="card-text">
                         Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.
                       </p>
-                      <NavLink exact={true} to={'/' + project}>
-                        <button>Go to project</button>
+                      <NavLink
+                        className="paper-btn btn-small"
+                        exact={true}
+                        to={'/project/' + project}
+                      >
+                        Go to project
                       </NavLink>
                     </div>
                   </div>
