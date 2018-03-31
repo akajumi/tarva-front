@@ -12,6 +12,7 @@ class NewProject extends Component {
       description: '',
       description_error: '',
       alert: false,
+      alert_type: 'success',
       alert_text: ''
     }
   }
@@ -36,14 +37,15 @@ class NewProject extends Component {
   handleInputChange = event => {
     event.preventDefault()
 
-    let element_textError = '',
-      value = event.target.value,
-      name = event.target.name,
-      property_value = name,
-      property_errorText = name + '_error',
-      new_state = {}
+    let value = event.target.value
+    let name = event.target.name
 
-    if (event.target.value === '') {
+    let new_state = {}
+    let property_value = name
+    let property_errorText = name + '_error'
+    let element_textError = ''
+
+    if (value === '') {
       element_textError = 'This field is required.'
     }
 
@@ -98,11 +100,14 @@ class NewProject extends Component {
             description: '',
             description_error: '',
             alert: true,
-            alert_text: (
-              <span>
-                Project <strong>{this.state.name}</strong> sucessfully created.
-              </span>
-            )
+            alert_type: 'success',
+            alert_text: response.data.description
+          })
+        } else {
+          this.setState({
+            alert: true,
+            alert_type: 'danger',
+            alert_text: response.data.description
           })
         }
       })
@@ -113,72 +118,79 @@ class NewProject extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="sm-12 col">
-          <h2>New project:</h2>
-          {this.state.alert ? (
-            <div>
-              <br />
-              <div className="alert alert-success">
-                <span className="vrt-close-alert" onClick={this.closeAlert}>
-                  x
-                </span>
-                {this.state.alert_text}
+      <div className="vrt-content paper">
+        <div className="row">
+          <div className="sm-12 col">
+            <h2>New project:</h2>
+
+            {this.state.alert ? (
+              <div>
+                <br />
+                <div className={'alert alert-' + this.state.alert_type}>
+                  <span className="vrt-close-alert" onClick={this.closeAlert}>
+                    x
+                  </span>
+                  {this.state.alert_text}
+                </div>
               </div>
-            </div>
-          ) : (
-            <div>
-              <div className="row">
-                <div className="col sm-4 vtr-no-padding">
-                  <div
-                    className={this.state.name_error !== '' ? 'form-group vrt-error' : 'form-group'}
-                  >
-                    <label htmlFor="name">Project name (lowercase and no spaces)</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="input-block"
-                      value={this.state.name}
-                      onChange={this.handleInputChange}
-                    />
-                    {this.state.name_error !== '' ? (
-                      <span className="vrt-error-description">{this.state.name_error}</span>
-                    ) : null}
+            ) : (
+              <div>
+                <div className="row">
+                  <div className="col sm-4 vtr-no-padding">
+                    <div
+                      className={
+                        this.state.name_error !== '' ? 'form-group vrt-error' : 'form-group'
+                      }
+                    >
+                      <label htmlFor="name">Project name (lowercase and no spaces)</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="input-block"
+                        value={this.state.name}
+                        onChange={this.handleInputChange}
+                      />
+                      {this.state.name_error !== '' ? (
+                        <span className="vrt-error-description">{this.state.name_error}</span>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col sm-6 vtr-no-padding">
+                    <div
+                      className={
+                        this.state.description_error !== '' ? 'form-group vrt-error' : 'form-group'
+                      }
+                    >
+                      <label htmlFor="description">Project description</label>
+                      <textarea
+                        className="input-block"
+                        rows="4"
+                        value={this.state.description}
+                        id="description"
+                        name="description"
+                        onChange={this.handleInputChange}
+                      />
+                      {this.state.description_error !== '' ? (
+                        <span className="vrt-error-description">
+                          {this.state.description_error}
+                        </span>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col sm-6 vtr-no-padding">
+                    <button className="btn-small" onClick={this.handleSave}>
+                      Create
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="row">
-                <div className="col sm-6 vtr-no-padding">
-                  <div
-                    className={
-                      this.state.description_error !== '' ? 'form-group vrt-error' : 'form-group'
-                    }
-                  >
-                    <label htmlFor="description">Project description</label>
-                    <textarea
-                      className="input-block"
-                      rows="4"
-                      value={this.state.description}
-                      id="description"
-                      name="description"
-                      onChange={this.handleInputChange}
-                    />
-                    {this.state.description_error !== '' ? (
-                      <span className="vrt-error-description">{this.state.description_error}</span>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col sm-6 vtr-no-padding">
-                  <button className="btn-small" onClick={this.handleSave}>
-                    Create
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     )

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import client from 'utils/api/client'
 
+import config from './config.js'
+
 class Project extends Component {
   constructor(props) {
     super(props)
@@ -147,7 +149,20 @@ class Project extends Component {
             {this.showButtons()}
           </div>
         </div>
-        <div className="row flex-left">sdfsdf</div>
+        <div className="row">
+          <div className="col sm-12">
+            <div className="form-group">
+              <label htmlFor="name">Project ID</label>
+              <textarea
+                id="config"
+                name="config"
+                rows="40"
+                value={JSON.stringify(config)}
+                className="input-block"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
