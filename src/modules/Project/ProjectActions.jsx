@@ -21,7 +21,6 @@ class ProjectActions extends Component {
         client
           .reference(this.state.projectName)
           .then(response => {
-            console.log(response)
             this.setState({
               working: false
             })
@@ -42,7 +41,6 @@ class ProjectActions extends Component {
         client
           .test(this.state.projectName)
           .then(response => {
-            console.log(response)
             this.setState({
               working: false
             })
@@ -63,7 +61,6 @@ class ProjectActions extends Component {
         client
           .approve(this.state.projectName)
           .then(response => {
-            console.log(response)
             this.setState({
               working: false
             })
@@ -78,9 +75,7 @@ class ProjectActions extends Component {
   handleReport = () => {
     client
       .report(this.state.projectName)
-      .then(response => {
-        console.log(response)
-      })
+      .then(() => {})
       .catch(response => {
         console.log(response)
       })
