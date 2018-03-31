@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import ProjectActions from './ProjectActions'
 
-// eslint-disable-next-line
 import config from './config.js'
 
 class Project extends Component {
@@ -13,8 +12,12 @@ class Project extends Component {
     const paths = props.location.pathname.split('/')
     const projectName = paths[2]
 
+    console.log('PROJECTS')
+    console.log(config().viewports)
+
     this.state = {
-      projectName: projectName
+      projectName: projectName,
+      viewports: config().viewports
     }
   }
 
@@ -41,187 +44,87 @@ class Project extends Component {
               <div className="row">
                 <div className="col sm-4 vtr-no-padding">
                   <fieldset>
-                    <legend>Viewports</legend>
+                    <legend>ID (disabled)</legend>
 
                     <div className="row">
-                      <div className="col sm-4 vtr-no-padding">
+                      <div className="col sm-12 vtr-no-padding">
                         <div className="form-group">
-                          <label htmlFor="label1">Label</label>
+                          <label htmlFor="label1">Project ID (lowercase, no spaces...)</label>
                           <input
                             type="text"
-                            id="label1"
-                            name="label1"
-                            value="phone"
+                            id="id"
+                            name="id"
+                            value={this.state.projectName}
                             className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="width1">Width</label>
-                          <input
-                            type="text"
-                            id="width1"
-                            name="width1"
-                            value="480"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="height1">Height</label>
-                          <input
-                            type="text"
-                            id="height1"
-                            name="height1"
-                            value="600"
-                            className="input-block"
+                            disabled
                           />
                         </div>
                       </div>
                     </div>
+                  </fieldset>
+                </div>
+              </div>
 
-                    <div className="row">
-                      <div className="col sm-4 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="label2">Label</label>
-                          <input
-                            type="text"
-                            id="label2"
-                            name="label2"
-                            value="tablet_portrait"
-                            className="input-block"
-                          />
+              <div className="row">
+                <div className="col sm-4 vtr-no-padding">
+                  <fieldset>
+                    <legend>Viewports (disabled)</legend>
+
+                    {this.state.viewports.map((viewport, index) => {
+                      return (
+                        <div className="row" key={'viewport' + index}>
+                          <div className="col sm-5 vtr-no-padding">
+                            <div className="form-group">
+                              {index === 0 ? <label htmlFor={'label' + index}>Label</label> : null}
+                              <input
+                                type="text"
+                                id={'label' + index}
+                                name={'label' + index}
+                                value={viewport.label}
+                                className="input-block"
+                                disabled
+                              />
+                            </div>
+                          </div>
+
+                          <div className="col sm-1 vtr-no-padding" />
+
+                          <div className="col sm-2 vtr-no-padding">
+                            <div className="form-group">
+                              {index === 0 ? <label htmlFor={'width' + index}>Width</label> : null}
+                              <input
+                                type="text"
+                                id={'width' + index}
+                                name={'width' + index}
+                                value={viewport.width}
+                                className="input-block"
+                                disabled
+                              />
+                            </div>
+                          </div>
+
+                          <div className="col sm-1 vtr-no-padding" />
+
+                          <div className="col sm-2 vtr-no-padding">
+                            <div className="form-group">
+                              {index === 0 ? (
+                                <label htmlFor={'height' + index}>Height</label>
+                              ) : null}
+                              <input
+                                type="text"
+                                id={'height' + index}
+                                name={'height' + index}
+                                value={viewport.height}
+                                className="input-block"
+                                disabled
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      )
+                    })}
 
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="width2">Width</label>
-                          <input
-                            type="text"
-                            id="width2"
-                            name="width2"
-                            value="768"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="height2">Height</label>
-                          <input
-                            type="text"
-                            id="height2"
-                            name="height2"
-                            value="1024"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col sm-4 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="label3">Label</label>
-                          <input
-                            type="text"
-                            id="label3"
-                            name="label3"
-                            value="tablet_landscape"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="width3">Width</label>
-                          <input
-                            type="text"
-                            id="width3"
-                            name="width3"
-                            value="1024"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="height3">Height</label>
-                          <input
-                            type="text"
-                            id="height3"
-                            name="height3"
-                            value="768"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="row">
-                      <div className="col sm-4 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="label4">Label</label>
-                          <input
-                            type="text"
-                            id="label4"
-                            name="label4"
-                            value="desktop"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="width4">Width</label>
-                          <input
-                            type="text"
-                            id="width4"
-                            name="width4"
-                            value="1280"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="col sm-1 vtr-no-padding" />
-
-                      <div className="col sm-3 vtr-no-padding">
-                        <div className="form-group">
-                          <label htmlFor="height4">Height</label>
-                          <input
-                            type="text"
-                            id="height4"
-                            name="height4"
-                            value="800"
-                            className="input-block"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    {/* FIN */}
                   </fieldset>
                 </div>
               </div>
