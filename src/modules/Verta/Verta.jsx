@@ -6,7 +6,7 @@ import Projects from 'modules/Projects'
 import NewProject from 'modules/NewProject'
 import Project from 'modules/Project'
 
-class Tarva extends Component {
+class Verta extends Component {
   constructor(props) {
     super(props)
 
@@ -38,4 +38,4 @@ class Tarva extends Component {
   }
 }
 
-export default Tarva
+export default Verta
