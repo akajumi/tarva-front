@@ -9,7 +9,7 @@ const Header = () => {
         <div className="sm-4 col">
           <h1 className="vrt-logo">
             <NavLink exact={true} to={'/'}>
-              VeRTa <small>Visual Regresion Test</small>
+              VeRTa <small>Visual Regression Test</small>
             </NavLink>
           </h1>
         </div>
