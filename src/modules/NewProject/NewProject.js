@@ -117,6 +117,20 @@ class NewProject extends Component {
       })
   }
 
+  showAlert = () => {
+    return (
+      <div>
+        <br />
+        <div className={'alert alert-' + this.state.alert_type}>
+          <span className="vrt-close-alert" onClick={this.closeAlert}>
+            x
+          </span>
+          {this.state.alert_text}
+        </div>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="vrt-content paper">
@@ -125,15 +139,7 @@ class NewProject extends Component {
             <h2>New project:</h2>
 
             {this.state.alert ? (
-              <div>
-                <br />
-                <div className={'alert alert-' + this.state.alert_type}>
-                  <span className="vrt-close-alert" onClick={this.closeAlert}>
-                    x
-                  </span>
-                  {this.state.alert_text}
-                </div>
-              </div>
+              this.showAlert()
             ) : (
               <div>
                 <div className="row">
