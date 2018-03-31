@@ -1,3 +1,3 @@
-import Tarva from './Tarva'
+import Verta from './Verta'
 
-export default Tarva
+export default Verta
