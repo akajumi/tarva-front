@@ -126,10 +126,10 @@ class ProjectActions extends Component {
     return (
       <div className="vrt-content paper">
         <div className="row">
-          <div className="sm-8 col">
+          <div className="sm-7 col">
             <h2>Project "{this.state.projectName}":</h2>
           </div>
-          <div className="sm-4 col" style={{ textAlign: 'right' }}>
+          <div className="sm-5 col" style={{ textAlign: 'right' }}>
             {this.showButtons()}
           </div>
         </div>

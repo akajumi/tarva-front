@@ -19,7 +19,7 @@ class ProjectViewports extends Component {
             <div className="row" key={'viewport' + index}>
               <div className="col sm-5 vtr-no-padding">
                 <div className="form-group">
-                  {index === 0 ? <label htmlFor={'label' + index}>Label</label> : null}
+                  <label htmlFor={'label' + index}>Label</label>
                   <input
                     type="text"
                     id={'label' + index}
@@ -35,7 +35,7 @@ class ProjectViewports extends Component {
 
               <div className="col sm-2 vtr-no-padding">
                 <div className="form-group">
-                  {index === 0 ? <label htmlFor={'width' + index}>Width</label> : null}
+                  <label htmlFor={'width' + index}>Width</label>
                   <input
                     type="text"
                     id={'width' + index}
@@ -51,7 +51,7 @@ class ProjectViewports extends Component {
 
               <div className="col sm-2 vtr-no-padding">
                 <div className="form-group">
-                  {index === 0 ? <label htmlFor={'height' + index}>Height</label> : null}
+                  <label htmlFor={'height' + index}>Height</label>
                   <input
                     type="text"
                     id={'height' + index}
@@ -61,6 +61,10 @@ class ProjectViewports extends Component {
                     disabled
                   />
                 </div>
+              </div>
+
+              <div className="col sm-12 vtr-no-padding" style={{ borderTop: '1px dotted #666666' }}>
+                &nbsp;
               </div>
             </div>
           )
