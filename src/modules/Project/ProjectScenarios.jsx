@@ -14,10 +14,10 @@ class ProjectScenarios extends Component {
       <div>
         {this.state.scenarios.map((scenario, index) => {
           return (
-            <div>
+            <div key={'scenario' + index}>
               <fieldset>
                 <legend>&nbsp; Scenario {index + 1} &nbsp;</legend>
-                <div className="row" key={'scenario' + index}>
+                <div className="row">
                   <div className="col sm-12 vtr-no-padding">
                     <div className="form-group">
                       <label htmlFor={'label' + index}>Label</label>
