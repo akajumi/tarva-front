@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './redux/store'
 
-import Tarva from 'modules/Tarva'
+import Verta from 'modules/Verta'
 import registerServiceWorker from './registerServiceWorker'
 
 // We listen the router changes (history changes) to scroll the app to the top.
@@ -16,7 +16,7 @@ history.listen((location, action) => {
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Tarva />
+      <Verta />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('verta')
