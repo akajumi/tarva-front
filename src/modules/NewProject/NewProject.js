@@ -58,6 +58,7 @@ class NewProject extends Component {
   closeAlert = () => {
     this.setState({
       alert: false,
+      alert_type: 'success',
       alert_text: ''
     })
   }
