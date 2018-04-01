@@ -76,7 +76,7 @@ class Project extends Component {
               </div>
 
               <div className="row">
-                <div className="col sm-5">
+                <div className="col sm-4">
                   <ProjectId
                     projectId={this.state.projectName}
                     projectDescription={this.state.projectDescription}
@@ -87,7 +87,7 @@ class Project extends Component {
                   <ProjectPaths filepaths={this.state.paths} />
                 </div>
 
-                <div className="col sm-7">
+                <div className="col sm-8">
                   <ProjectScenarios scenarios={this.state.scenarios} />
                 </div>
               </div>
