@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { withRouter } from 'react-router-dom'
+
 import client from 'utils/api/client'
 
 class NewProject extends Component {
@@ -13,7 +15,8 @@ class NewProject extends Component {
       description_error: '',
       alert: false,
       alert_type: 'success',
-      alert_text: ''
+      alert_text: '',
+      createdProject: ''
     }
   }
 
@@ -25,7 +28,9 @@ class NewProject extends Component {
     description: '',
     description_error: '',
     alert: false,
-    alert_text: ''
+    alert_type: 'success',
+    alert_text: '',
+    createdProject: ''
   }
 
   // componentWillMount() {}
@@ -90,9 +95,10 @@ class NewProject extends Component {
 
   createProject = project => {
     const projectName = project.name
+    const projectDescription = project.description
 
     client
-      .create(projectName)
+      .create(projectName, projectDescription)
       .then(response => {
         if (response.data.created) {
           this.setState({
@@ -102,7 +108,8 @@ class NewProject extends Component {
             description_error: '',
             alert: true,
             alert_type: 'success',
-            alert_text: response.data.description
+            alert_text: response.data.description,
+            createdProject: projectName
           })
         } else {
           this.setState({
@@ -121,11 +128,22 @@ class NewProject extends Component {
     return (
       <div>
         <br />
-        <div className={'alert alert-' + this.state.alert_type}>
-          <span className="vrt-close-alert" onClick={this.closeAlert}>
-            x
-          </span>
-          {this.state.alert_text}
+        <div className={'alert alert-' + this.state.alert_type}>{this.state.alert_text}</div>
+        <div className="row">
+          <div className="sm-12 col" style={{ textAlign: 'center' }}>
+            <button className="btn-small" onClick={this.closeAlert}>
+              Create another project
+            </button>
+            &nbsp;
+            <button
+              className="btn-small"
+              onClick={() => {
+                this.props.history.push('/project/' + this.state.createdProject)
+              }}
+            >
+              Go to project "{this.state.createdProject}"
+            </button>
+          </div>
         </div>
       </div>
     )
@@ -204,4 +222,4 @@ class NewProject extends Component {
   }
 }
 
-export default NewProject
+export default withRouter(NewProject)
