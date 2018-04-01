@@ -10,6 +10,18 @@ class ProjectId extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.projectId !== this.state.projectId ||
+      nextProps.projectDescription !== this.state.projectDescription
+    ) {
+      this.setState({
+        projectId: nextProps.projectId,
+        projectDescription: nextProps.projectDescription
+      })
+    }
+  }
+
   render() {
     return (
       <fieldset>

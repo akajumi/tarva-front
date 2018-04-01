@@ -9,6 +9,14 @@ class ProjectViewports extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.viewports !== this.state.viewports) {
+      this.setState({
+        viewports: nextProps.viewports
+      })
+    }
+  }
+
   render() {
     return (
       <fieldset>

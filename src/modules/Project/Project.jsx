@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import client from 'utils/api/client'
+
 import ProjectActions from './ProjectActions'
 import ProjectId from './ProjectId'
 import ProjectViewports from './ProjectViewports'
 import ProjectScenarios from './ProjectScenarios'
 import ProjectPaths from './ProjectPaths'
-
-import config from './config.js'
 
 class Project extends Component {
   constructor(props) {
@@ -18,10 +18,11 @@ class Project extends Component {
 
     this.state = {
       projectName: projectName,
-      projectDescription: config(projectName).description,
-      viewports: config(projectName).viewports,
-      scenarios: config(projectName).scenarios,
-      paths: config(projectName).paths
+      projectConfig: {},
+      projectDescription: '',
+      viewports: [],
+      scenarios: [],
+      paths: {}
     }
   }
 
@@ -29,7 +30,28 @@ class Project extends Component {
 
   // static defaultProps = {}
 
-  // componentWillMount() {}
+  componentWillMount() {
+    this.getProjectConfig()
+  }
+
+  getProjectConfig = () => {
+    client
+      .project(this.state.projectName)
+      .then(response => {
+        console.log(response.data)
+        this.setState({
+          projectName: response.data.id,
+          projectConfig: response.data,
+          projectDescription: response.data.description,
+          viewports: response.data.viewports,
+          scenarios: response.data.scenarios,
+          paths: response.data.paths
+        })
+      })
+      .catch(response => {
+        console.log(response)
+      })
+  }
 
   // componentDidMount() {}
 

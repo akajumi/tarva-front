@@ -4,10 +4,16 @@ class ProjectPaths extends Component {
   constructor(props) {
     super(props)
 
-    console.log()
-
     this.state = {
       paths: props.filepaths
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.filepaths !== this.state.paths) {
+      this.setState({
+        paths: nextProps.filepaths
+      })
     }
   }
 

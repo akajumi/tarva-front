@@ -9,6 +9,14 @@ class ProjectScenarios extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.scenarios !== this.state.scenarios) {
+      this.setState({
+        scenarios: nextProps.scenarios
+      })
+    }
+  }
+
   render() {
     return (
       <div>
