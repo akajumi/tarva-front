@@ -64,6 +64,11 @@
 }
 
 /* COMMON */
+.paper-btn:focus,
+[type='button']:focus,
+button:focus {
+  border: 2px solid #41403e;
+}
 .vtr-no-padding {
   padding: 5px 0 !important;
 }
