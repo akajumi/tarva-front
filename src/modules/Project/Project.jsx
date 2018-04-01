@@ -52,6 +52,22 @@ class Project extends Component {
       })
   }
 
+  handleProjectIdUpdate = data => {
+    let newConfig = this.state.projectConfig
+
+    newConfig.description = data.description
+
+    this.setState(
+      {
+        projectConfig: newConfig,
+        projectDescription: data.description
+      },
+      () => {
+        this.handleSave()
+      }
+    )
+  }
+
   handleSave = () => {
     let projectConfig = this.state.projectConfig
 
@@ -74,14 +90,7 @@ class Project extends Component {
           <div className="row">
             <div className="col sm-12">
               <div className="row">
-                <div className="col sm-8">
-                  <h2>Project parameters:</h2>
-                </div>
-                <div className="col sm-4" style={{ textAlign: 'right' }}>
-                  <button className="btn-success btn-small" onClick={this.handleSave}>
-                    Save project
-                  </button>
-                </div>
+                <h2>Project parameters:</h2>
               </div>
 
               <div className="row">
@@ -89,6 +98,7 @@ class Project extends Component {
                   <ProjectId
                     projectId={this.state.projectName}
                     projectDescription={this.state.projectDescription}
+                    action={this.handleProjectIdUpdate}
                   />
                   <br />
                   <ProjectViewports viewports={this.state.viewports} />

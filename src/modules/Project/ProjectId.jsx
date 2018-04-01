@@ -6,7 +6,8 @@ class ProjectId extends Component {
 
     this.state = {
       projectId: props.projectId,
-      description: props.projectDescription
+      description: props.projectDescription,
+      action: props.action
     }
   }
 
@@ -20,12 +21,50 @@ class ProjectId extends Component {
         description: nextProps.projectDescription
       })
     }
+
+    if (nextProps.action !== this.state.action) {
+      this.setState({
+        action: nextProps.action
+      })
+    }
+  }
+
+  handleInputChange = event => {
+    event.preventDefault()
+
+    let value = event.target.value
+    let name = event.target.name
+
+    let new_state = {}
+    let property_value = name
+
+    new_state[property_value] = value
+
+    this.setState(new_state)
+  }
+
+  handleSave = () => {
+    const data = {
+      id: this.state.projectId,
+      description: this.state.description
+    }
+
+    this.state.action(data)
   }
 
   render() {
     return (
       <fieldset>
-        <legend>&nbsp; Meta (disabled) &nbsp;</legend>
+        <legend>
+          &nbsp; Meta info &nbsp;
+          <button
+            className="btn-success btn-small"
+            style={{ position: 'absolute', top: -10, right: 15 }}
+            onClick={this.handleSave}
+          >
+            Save meta
+          </button>
+        </legend>
 
         <div className="row">
           <div className="col sm-12 vtr-no-padding">
@@ -53,7 +92,7 @@ class ProjectId extends Component {
                 name="description"
                 value={this.state.description}
                 className="input-block"
-                disabled
+                onChange={this.handleInputChange}
               />
             </div>
           </div>
