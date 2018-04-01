@@ -94,11 +94,8 @@ class NewProject extends Component {
   }
 
   createProject = project => {
-    const projectName = project.name
-    const projectDescription = project.description
-
     client
-      .create(projectName, projectDescription)
+      .create(project)
       .then(response => {
         if (response.data.created) {
           this.setState({
@@ -109,7 +106,7 @@ class NewProject extends Component {
             alert: true,
             alert_type: 'success',
             alert_text: response.data.description,
-            createdProject: projectName
+            createdProject: project.name
           })
         } else {
           this.setState({

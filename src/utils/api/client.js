@@ -9,8 +9,10 @@ const instance = axios.create({
 const client = {
   projects: () => instance.get(ApiUrl.projects()),
 
-  create: (projectName, projectDescription) =>
-    instance.post(ApiUrl.create(projectName), { description: projectDescription }),
+  project: project => instance.get(ApiUrl.project(project)),
+
+  create: project =>
+    instance.post(ApiUrl.create(project.name), { description: project.description }),
 
   reference: project => instance.get(ApiUrl.reference(project)),
 
