@@ -14,6 +14,8 @@ const client = {
   create: project =>
     instance.post(ApiUrl.create(project.name), { description: project.description }),
 
+  update: config => instance.post(ApiUrl.update(config.id), { config: config }),
+
   reference: project => instance.get(ApiUrl.reference(project)),
 
   test: project => instance.get(ApiUrl.test(project)),

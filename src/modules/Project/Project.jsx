@@ -53,7 +53,16 @@ class Project extends Component {
   }
 
   handleSave = () => {
-    console.log('SAVE PROJECT')
+    let projectConfig = this.state.projectConfig
+
+    client
+      .update(projectConfig)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(response => {
+        console.log(response)
+      })
   }
 
   render() {
