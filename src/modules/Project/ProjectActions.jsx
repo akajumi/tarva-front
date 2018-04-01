@@ -85,7 +85,7 @@ class ProjectActions extends Component {
     if (this.state.working) {
       return (
         <div>
-          <button className="btn-small" disabled>
+          <button className="btn-warning btn-small" disabled>
             Work in progress...
           </button>
         </div>
