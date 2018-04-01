@@ -128,6 +128,15 @@ class NewProject extends Component {
         <div className={'alert alert-' + this.state.alert_type}>{this.state.alert_text}</div>
         <div className="row">
           <div className="sm-12 col" style={{ textAlign: 'center' }}>
+            <button
+              className="btn-small"
+              onClick={() => {
+                this.props.history.push('/')
+              }}
+            >
+              Go to project list
+            </button>
+            &nbsp;
             <button className="btn-small" onClick={this.closeAlert}>
               Create another project
             </button>
@@ -158,7 +167,7 @@ class NewProject extends Component {
             ) : (
               <div>
                 <div className="row">
-                  <div className="col sm-4 vtr-no-padding">
+                  <div className="col sm-3 vtr-no-padding">
                     <div
                       className={
                         this.state.name_error !== '' ? 'form-group vrt-error' : 'form-group'
@@ -180,19 +189,19 @@ class NewProject extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col sm-6 vtr-no-padding">
+                  <div className="col sm-10 vtr-no-padding">
                     <div
                       className={
                         this.state.description_error !== '' ? 'form-group vrt-error' : 'form-group'
                       }
                     >
                       <label htmlFor="description">Project description</label>
-                      <textarea
-                        className="input-block"
-                        rows="4"
-                        value={this.state.description}
+                      <input
+                        type="text"
                         id="description"
                         name="description"
+                        className="input-block"
+                        value={this.state.description}
                         onChange={this.handleInputChange}
                       />
                       {this.state.description_error !== '' ? (
