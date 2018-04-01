@@ -67,17 +67,15 @@ class Projects extends Component {
             <div className="row flex-left">
               {this.state.projects.map(project => {
                 return (
-                  <div className="col-12 sm-6 md-3" key={'project-' + project}>
+                  <div className="col-12 sm-6 md-3" key={'project-' + project.id}>
                     <div className="card">
                       <div className="card-body">
-                        <h4 className="card-title">{project}</h4>
-                        <p className="card-text">
-                          Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.
-                        </p>
+                        <h4 className="card-title">{project.id}</h4>
+                        <p className="card-text">{project.description}</p>
                         <NavLink
                           className="paper-btn btn-small"
                           exact={true}
-                          to={'/project/' + project}
+                          to={'/project/' + project.id}
                         >
                           Go to project
                         </NavLink>
