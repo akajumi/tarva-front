@@ -38,7 +38,6 @@ class Project extends Component {
     client
       .project(this.state.projectName)
       .then(response => {
-        console.log(response.data)
         this.setState({
           projectName: response.data.id,
           projectConfig: response.data,
@@ -53,9 +52,9 @@ class Project extends Component {
       })
   }
 
-  // componentDidMount() {}
-
-  // componentWillReceiveProps() {}
+  handleSave = () => {
+    console.log('SAVE PROJECT')
+  }
 
   render() {
     return (
@@ -65,7 +64,16 @@ class Project extends Component {
         <div className="vrt-content paper">
           <div className="row">
             <div className="col sm-12">
-              <h2>Project parameters:</h2>
+              <div className="row">
+                <div className="col sm-8">
+                  <h2>Project parameters:</h2>
+                </div>
+                <div className="col sm-4" style={{ textAlign: 'right' }}>
+                  <button className="btn-success btn-small" onClick={this.handleSave}>
+                    Save project
+                  </button>
+                </div>
+              </div>
 
               <div className="row">
                 <div className="col sm-5">

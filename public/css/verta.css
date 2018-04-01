@@ -49,8 +49,7 @@
 }
 
 /* FORMS */
-.vrt-error input,
-.vrt-error textarea {
+.vrt-error input {
   border: 2px solid #c00000;
   color: #c00000;
 }
