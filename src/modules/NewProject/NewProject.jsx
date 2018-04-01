@@ -214,7 +214,7 @@ class NewProject extends Component {
                 </div>
                 <div className="row">
                   <div className="col sm-6 vtr-no-padding">
-                    <button className="btn-small" onClick={this.handleSave}>
+                    <button className="btn-success btn-small" onClick={this.handleSave}>
                       Create project
                     </button>
                   </div>
