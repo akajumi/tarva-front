@@ -6,18 +6,18 @@ class ProjectId extends Component {
 
     this.state = {
       projectId: props.projectId,
-      projectDescription: props.projectDescription
+      description: props.projectDescription
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.projectId !== this.state.projectId ||
-      nextProps.projectDescription !== this.state.projectDescription
+      nextProps.projectDescription !== this.state.description
     ) {
       this.setState({
         projectId: nextProps.projectId,
-        projectDescription: nextProps.projectDescription
+        description: nextProps.projectDescription
       })
     }
   }
@@ -51,7 +51,7 @@ class ProjectId extends Component {
                 type="text"
                 id="description"
                 name="description"
-                value={this.state.projectDescription}
+                value={this.state.description}
                 className="input-block"
                 disabled
               />
