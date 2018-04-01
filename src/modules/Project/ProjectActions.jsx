@@ -106,7 +106,11 @@ class ProjectActions extends Component {
         </button>
         &nbsp;
         <a
-          href={process.env.REACT_APP_HTTP_API + 'projects/' + this.state.projectName + '/report'}
+          href={
+            process.env.REACT_APP_HTTP_SERVER +
+            this.state.projectName +
+            '/backstop_data/html_report/index.html'
+          }
           className="paper-btn btn-small"
           target="_blank"
           rel="noopener noreferrer"
