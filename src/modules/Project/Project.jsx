@@ -24,6 +24,9 @@ class Project extends Component {
       scenarios: [],
       paths: {}
     }
+
+    this.handleProjectIdUpdate = this.handleProjectIdUpdate.bind(this)
+    this.handleScenariosUpdate = this.handleScenariosUpdate.bind(this)
   }
 
   // static propTypes = {}
@@ -63,16 +66,29 @@ class Project extends Component {
         projectDescription: data.description
       },
       () => {
-        this.handleSave()
+        this.handleSave(newConfig)
       }
     )
   }
 
-  handleSave = () => {
-    let projectConfig = this.state.projectConfig
+  handleScenariosUpdate = scenarios => {
+    let newConfig = this.state.projectConfig
 
+    newConfig.scenarios = scenarios
+
+    this.setState(
+      {
+        projectConfig: newConfig
+      },
+      () => {
+        this.handleSave(newConfig)
+      }
+    )
+  }
+
+  handleSave = newConfig => {
     client
-      .update(projectConfig)
+      .update(newConfig)
       .then()
       .catch(response => {
         console.log(response)
@@ -105,7 +121,10 @@ class Project extends Component {
                 </div>
 
                 <div className="col sm-8">
-                  <ProjectScenarios scenarios={this.state.scenarios} />
+                  <ProjectScenarios
+                    scenarios={this.state.scenarios}
+                    action={this.handleScenariosUpdate}
+                  />
                 </div>
               </div>
             </div>
