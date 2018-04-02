@@ -73,9 +73,7 @@ class Project extends Component {
 
     client
       .update(projectConfig)
-      .then(response => {
-        console.log(response)
-      })
+      .then()
       .catch(response => {
         console.log(response)
       })
