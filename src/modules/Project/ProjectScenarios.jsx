@@ -5,9 +5,11 @@ class ProjectScenarios extends Component {
     super(props)
 
     const workScenarios = props.scenarios.map(scenario => Object.assign({}, scenario))
+    const newScenario = this.newScenario(workScenarios)
 
     this.state = {
       scenarios: workScenarios,
+      newScenario: newScenario,
       action: props.action
     }
   }
@@ -15,9 +17,16 @@ class ProjectScenarios extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.state.scenarios.length === 0) {
       const workScenarios = nextProps.scenarios.map(scenario => Object.assign({}, scenario))
+      const newScenario = this.newScenario(workScenarios)
+
+      console.log('workScenarios')
+      console.log(workScenarios)
+      console.log('newScenario')
+      console.log(newScenario)
 
       this.setState({
-        scenarios: workScenarios
+        scenarios: workScenarios,
+        newScenario: newScenario
       })
     }
 
@@ -28,17 +37,23 @@ class ProjectScenarios extends Component {
     }
   }
 
-  // TODO
   newScenario = scenarios => {
     let newScenario = Object.assign({}, scenarios[0])
 
+    console.log('NEW SCENARIO')
+    console.log(newScenario)
+
     newScenario.label = ''
     newScenario.url = ''
+    newScenario.referenceUrl = ''
+    newScenario.selectors = 'document'
+    newScenario.hideSelectors = []
+    newScenario.removeSelectors = []
 
     return newScenario
   }
 
-  handleInputChange = event => {
+  handleScenarioChange = event => {
     event.preventDefault()
 
     let scenarios = this.state.scenarios
@@ -61,11 +76,56 @@ class ProjectScenarios extends Component {
     this.state.action(this.state.scenarios)
   }
 
+  handleNewScenarioChange = event => {
+    event.preventDefault()
+
+    let newScenario = this.state.newScenario
+    const name = event.target.name
+    let value = event.target.value
+
+    if (name === 'selectors' || name === 'hideSelectors' || name === 'removeSelectors') {
+      value = event.target.value.split(',').map(val => val.trim())
+    }
+
+    newScenario[name] = value
+
+    console.log('handleNewScenarioChange')
+    console.log(newScenario)
+
+    this.setState({
+      newScenario: newScenario
+    })
+  }
+
+  handleNewScenarrioSave = () => {
+    const actualScenarios = this.state.scenarios.map(scenario => Object.assign({}, scenario))
+    actualScenarios.push(this.state.newScenario)
+
+    const newScenario = this.newScenario(actualScenarios)
+
+    this.setState({
+      scenarios: actualScenarios,
+      newScenario: newScenario
+    })
+
+    this.state.action(actualScenarios)
+  }
+
   render() {
     return (
       <div>
-        {/* <fieldset style={{ background: '#f5f5f5' }}>
-          <legend>&nbsp; New scenario &nbsp;</legend>
+        <fieldset style={{ background: '#f5f5f5' }}>
+          <legend>
+            &nbsp; New scenario &nbsp;
+            <button
+              className="btn-success btn-small"
+              style={{ position: 'absolute', top: -10, right: 15 }}
+              onClick={this.handleNewScenarrioSave}
+              name={'new-scenario'}
+            >
+              Save scenarios
+            </button>
+          </legend>
 
           <div className="row">
             <div className="col sm-6">
@@ -77,7 +137,7 @@ class ProjectScenarios extends Component {
                   name={'label'}
                   value={this.state.newScenario.label}
                   className="input-block"
-                  disabled
+                  onChange={this.handleNewScenarioChange}
                 />
               </div>
               <div className="form-group">
@@ -88,7 +148,7 @@ class ProjectScenarios extends Component {
                   name={'url'}
                   value={this.state.newScenario.url}
                   className="input-block"
-                  disabled
+                  onChange={this.handleNewScenarioChange}
                 />
               </div>
               <div className="form-group">
@@ -99,7 +159,7 @@ class ProjectScenarios extends Component {
                   name={'referenceUrl'}
                   value={this.state.newScenario.referenceUrl}
                   className="input-block"
-                  disabled
+                  onChange={this.handleNewScenarioChange}
                 />
               </div>
             </div>
@@ -112,7 +172,7 @@ class ProjectScenarios extends Component {
                   name={'selectors'}
                   value={this.state.newScenario.selectors}
                   className="input-block"
-                  disabled
+                  onChange={this.handleNewScenarioChange}
                 />
               </div>
               <div className="form-group">
@@ -123,7 +183,7 @@ class ProjectScenarios extends Component {
                   name={'hideSelectors'}
                   value={this.state.newScenario.hideSelectors}
                   className="input-block"
-                  disabled
+                  onChange={this.handleNewScenarioChange}
                 />
               </div>
               <div className="form-group">
@@ -134,13 +194,13 @@ class ProjectScenarios extends Component {
                   name={'removeSelectors'}
                   value={this.state.newScenario.removeSelectors}
                   className="input-block"
-                  disabled
+                  onChange={this.handleNewScenarioChange}
                 />
               </div>
             </div>
           </div>
         </fieldset>
-        <br /> */}
+        <br />
 
         {this.state.scenarios.map((scenario, index) => {
           return (
@@ -169,7 +229,7 @@ class ProjectScenarios extends Component {
                         name={'label-' + index}
                         value={scenario.label}
                         className="input-block"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleScenarioChange}
                       />
                     </div>
                     <div className="form-group">
@@ -180,7 +240,7 @@ class ProjectScenarios extends Component {
                         name={'url-' + index}
                         value={scenario.url}
                         className="input-block"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleScenarioChange}
                       />
                     </div>
                     <div className="form-group">
@@ -191,7 +251,7 @@ class ProjectScenarios extends Component {
                         name={'referenceUrl-' + index}
                         value={scenario.referenceUrl}
                         className="input-block"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleScenarioChange}
                       />
                     </div>
                   </div>
@@ -207,7 +267,7 @@ class ProjectScenarios extends Component {
                         name={'selectors-' + index}
                         value={scenario.selectors}
                         className="input-block"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleScenarioChange}
                       />
                     </div>
                     <div className="form-group">
@@ -220,7 +280,7 @@ class ProjectScenarios extends Component {
                         name={'hideSelectors-' + index}
                         value={scenario.hideSelectors}
                         className="input-block"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleScenarioChange}
                       />
                     </div>
                     <div className="form-group">
@@ -233,7 +293,7 @@ class ProjectScenarios extends Component {
                         name={'removeSelectors-' + index}
                         value={scenario.removeSelectors}
                         className="input-block"
-                        onChange={this.handleInputChange}
+                        onChange={this.handleScenarioChange}
                       />
                     </div>
                   </div>
