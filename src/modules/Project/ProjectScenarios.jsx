@@ -19,11 +19,6 @@ class ProjectScenarios extends Component {
       const workScenarios = nextProps.scenarios.map(scenario => Object.assign({}, scenario))
       const newScenario = this.newScenario(workScenarios)
 
-      console.log('workScenarios')
-      console.log(workScenarios)
-      console.log('newScenario')
-      console.log(newScenario)
-
       this.setState({
         scenarios: workScenarios,
         newScenario: newScenario
@@ -40,13 +35,10 @@ class ProjectScenarios extends Component {
   newScenario = scenarios => {
     let newScenario = Object.assign({}, scenarios[0])
 
-    console.log('NEW SCENARIO')
-    console.log(newScenario)
-
     newScenario.label = ''
     newScenario.url = ''
     newScenario.referenceUrl = ''
-    newScenario.selectors = 'document'
+    newScenario.selectors = ['document']
     newScenario.hideSelectors = []
     newScenario.removeSelectors = []
 
@@ -88,9 +80,6 @@ class ProjectScenarios extends Component {
     }
 
     newScenario[name] = value
-
-    console.log('handleNewScenarioChange')
-    console.log(newScenario)
 
     this.setState({
       newScenario: newScenario
